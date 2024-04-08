@@ -141,6 +141,8 @@ function checkAuthenticate()
         exit;
     }
 
+
+
     // End 
 
 
@@ -149,14 +151,19 @@ function checkAuthenticate()
 
 function printFailure($message){
     echo json_encode(array("status" => "failure","message"=>$message));
-   
 
 }
 
 
-function sendEmail($to,$titie,$body){
 
-mail($to,$titie,$body);
-echo "success";
-}
 
+
+function sendEmail($to,$titie,$body,)
+{
+
+    $header="From:support@hasan.com"   . "/n  "  .  " CC:7127mohammad@gmail.com  ";
+        mail ($to,$titie,$body,$header,$header);
+      
+        }
+        
+        

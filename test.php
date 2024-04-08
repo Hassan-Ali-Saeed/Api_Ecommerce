@@ -1,15 +1,15 @@
 <?php 
-
-include './connect.php';
+include "./connect.php";
+// include "connect.php";
 // $table = "users";
 // // $name = filterRequest("namerequest");
-// $data = array( 
-// "users_name" => "hasan",
-// "users_email" => "hasan@gmail.com",
-// "users_phone" => "324234",
-// "users_verify" => "3243243",       
-// );
-// $count = insertData($table , $data);
+//  $data = array( 
+//  "users_name" => "hasan",
+//  "users_email" => "hasan@gmail.com",
+//  "users_phone" => "324234",
+//   "users_verify" => "3243243",       
+//  );
+//  $count = insertData($table , $data);
 
 // include './connect.php';
 
@@ -47,4 +47,6 @@ include './connect.php';
     //   
 
 
-        sendEmail("1121hassan@gmail.com","hla","from 11121jkdkddjj","okokooejoojodjojdjojoj");
+       // sendEmail("1121hassan@gmail.com","hla","from 11121jkdkddjj","okokooejoojodjojdjojoj");
+       getAllData("users","1=1");
+       

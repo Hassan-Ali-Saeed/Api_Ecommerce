@@ -30,7 +30,8 @@ $data=array(
 //     "users_verify" => "3243243",       
 //     );
 //sendEmail($email,"رمز التحقق","verfiy cod email:$verifycode");
+ //sendEmail($email,"التحقق","verifycode $verifycode");
  insertData($table,$data);
-
+ 
 }
 
