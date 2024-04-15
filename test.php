@@ -1,15 +1,23 @@
 <?php 
-include "./connect.php";
+include "connect.php";
+
+$table = "users";
+$usersname=filterRequest("usersname");
+$password=sha1($_POST["password"]);
+$email=filterRequest("email");
+$phone=filterRequest("phone");
+$verifycode=rand(10000,99999);
 // include "connect.php";
-// $table = "users";
-// // $name = filterRequest("namerequest");
-//  $data = array( 
-//  "users_name" => "hasan",
-//  "users_email" => "hasan@gmail.com",
-//  "users_phone" => "324234",
-//   "users_verify" => "3243243",       
-//  );
-//  $count = insertData($table , $data);
+$table = "users";
+// $name = filterRequest("namerequest");
+ $data = array( 
+    "users_name" =>$usersname,
+    "users_email" => $email,
+    "users_phone" => $phone,
+    "users_password"=>$password,
+    "users_verify" => $verifycode,    
+ );
+ $count = insertData($table , $data);
 
 // include './connect.php';
 

@@ -11,13 +11,53 @@ function filterRequest($requestname)
   return  htmlspecialchars(strip_tags($_POST[$requestname]));
 }
 
-function getAllData($table, $where = null, $values = null)
+function getAllData($table, $where = null, $values = null,$json=true)
 {
     global $con;
     $data = array();
-    $stmt = $con->prepare("SELECT  * FROM $table WHERE   $where ");
+    if($where==null){
+        $stmt = $con->prepare("SELECT  * FROM $table "); 
+    }else{
+        $stmt = $con->prepare("SELECT  * FROM $table WHERE   $where ");
+
+    }
+   
     $stmt->execute($values);
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $count  = $stmt->rowCount();
+    if($json==true){
+        if ($count > 0){
+            echo json_encode(array("status" => "success", "data" => $data));
+        } else {
+            echo json_encode(array("status" => "failure"));
+        }
+        return $count;
+    }
+    else{
+        if($count>0){
+            return $data;
+        }else{
+            echo json_encode(array("status" => "failure"));
+        }
+
+    }
+   
+}
+
+
+function getData($table, $where = null, $values = null)
+{
+    global $con;
+    $data = array();
+    if($where==null){
+        $stmt = $con->prepare("SELECT  * FROM $table WHERE   $where ");
+    }else{
+
+    
+    $stmt = $con->prepare("SELECT  * FROM $table WHERE   $where ");
+    }
+    $stmt->execute($values);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
     $count  = $stmt->rowCount();
     if ($count > 0){
         echo json_encode(array("status" => "success", "data" => $data));
@@ -26,6 +66,8 @@ function getAllData($table, $where = null, $values = null)
     }
     return $count;
 }
+
+
 
 function insertData($table, $data, $json = true)
 {
@@ -44,9 +86,9 @@ function insertData($table, $data, $json = true)
     $count = $stmt->rowCount();
     if ($json == true) {
     if ($count > 0) {
-        echo json_encode(array("status" => "success"));
+        echo json_encode(array("status"=>"success"));
     } else {
-        echo json_encode(array("status" => "failure"));
+        echo json_encode(array("status"=>"failure"));
     }
   }
     return $count;
@@ -91,7 +133,7 @@ function deleteData($table, $where, $json = true)
             echo json_encode(array("status" => "failure"));
         }
     }
-    return $count;
+      return $count;
 }
 
 function imageUpload($imageRequest)
@@ -141,12 +183,6 @@ function checkAuthenticate()
         exit;
     }
 
-
-
-    // End 
-
-
-
 }
 
 function printFailure($message){
@@ -161,9 +197,10 @@ function printFailure($message){
 function sendEmail($to,$titie,$body,)
 {
 
-    $header="From:support@hasan.com"   . "/n  "  .  " CC:7127mohammad@gmail.com  ";
-        mail ($to,$titie,$body,$header,$header);
+   $header="From:support@hasan.com"   . "/n  "  .  " CC:7127mohammad@gmail.com  ";
+        mail ($to,$titie,$body,$header);
       
         }
         
         
+

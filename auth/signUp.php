@@ -2,8 +2,8 @@
 include "../connect.php";
 
 $table = "users";
-$usersname=filterRequest("usersname");
-$password=sha1("password");
+$username=filterRequest("username");
+$password=sha1($_POST["password"]);
 $email=filterRequest("email");
 $phone=filterRequest("phone");
 $verifycode=rand(10000,99999);
@@ -16,13 +16,22 @@ if($count>0){
 }else
 {
 $data=array(
-"users_name" =>$usersname,
+"users_name" =>$username,
 "users_email" => $email,
 "users_phone" => $phone,
 "users_password"=>$password,
 "users_verify" => $verifycode, 
 
  );
+
+ //sendEmail($email,"التحقق","verifycode $verifycode");
+ insertData($table,$data);
+
+}
+
+
+
+
 // $data = array( 
 //     "users_name" => "hasan",
 //     "users_email" => "hasan@gmail.com",
@@ -30,8 +39,3 @@ $data=array(
 //     "users_verify" => "3243243",       
 //     );
 //sendEmail($email,"رمز التحقق","verfiy cod email:$verifycode");
- //sendEmail($email,"التحقق","verifycode $verifycode");
- insertData($table,$data);
- 
-}
-
