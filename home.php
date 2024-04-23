@@ -4,11 +4,16 @@ include "connect.php";
 $AllData=array();
 
 
-$AllData['status'] = "succes";
+$AllData['status'] = "success";
 $categories=getAllData("categories",null,null,false);
 
 $AllData['categories']=$categories;
-$AllData['status'] == "succes";
+
+ $items=getAllData("itemsview","items_discount!=0",null,false);
+
+$AllData['items']=$items;
+
 echo json_encode($AllData);
+
 
 ?>

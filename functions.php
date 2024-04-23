@@ -191,6 +191,23 @@ function printFailure($message){
 }
 
 
+function printSuccess($message){
+    echo json_encode(array("status" => "success","message"=>$message));
+
+}
+
+function result($count){
+    if($count >0){
+        printSuccess("succes");
+
+
+    }else{
+        printFailure("none");
+    }
+
+}
+
+
 
 
 
